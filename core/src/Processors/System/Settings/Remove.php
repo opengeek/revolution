@@ -10,7 +10,6 @@
 
 namespace MODX\Revolution\Processors\System\Settings;
 
-
 use MODX\Revolution\modLexiconEntry;
 use MODX\Revolution\modObjectRemoveProcessor;
 use MODX\Revolution\modSystemSetting;
