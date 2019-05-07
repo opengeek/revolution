@@ -8,20 +8,20 @@
  * files found in the top-level directory of this distribution.
  */
 
-namespace MODX\Revolution\Processors\Security\Group\Setting;
+namespace MODX\Revolution\Processors\Security\User\Setting;
 
 use MODX\Revolution\modAccessibleObject;
-use MODX\Revolution\modUserGroupSetting;
+use MODX\Revolution\modUserSetting;
 
 /**
- * Remove a user group setting and its lexicon strings
- * @param integer $group The group associated to the setting
+ * Remove a user setting and its lexicon strings
+ * @param integer $user The user associated to the setting
  * @param string $key The setting key
- * @package MODX\Revolution\Processors\Security\Group\Setting
+ * @package MODX\Revolution\Processors\Security\User\Setting
  */
 class Remove extends \MODX\Revolution\Processors\System\Settings\Remove
 {
-    public $classKey = modUserGroupSetting::class;
+    public $classKey = modUserSetting::class;
 
     /**
      * @return bool
@@ -29,13 +29,13 @@ class Remove extends \MODX\Revolution\Processors\System\Settings\Remove
     public function initialize()
     {
         $key = $this->getProperty('key', '');
-        $group = (int)$this->getProperty('group', 0);
+        $user = (int)$this->getProperty('user', 0);
 
-        if (empty($key) || !$group) {
+        if (empty($key) || !$user) {
             return $this->modx->lexicon($this->objectType . '_err_ns');
         }
 
-        $primaryKey = ['key' => $key, 'group' => $group];
+        $primaryKey = ['key' => $key, 'user' => $user];
         $this->object = $this->modx->getObject($this->classKey, $primaryKey);
 
         if (!$this->object) {

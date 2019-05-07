@@ -8,19 +8,17 @@
  * files found in the top-level directory of this distribution.
  */
 
-namespace MODX\Revolution\Processors\Security\Group\Setting;
+namespace MODX\Revolution\Processors\Security\User;
 
 /**
- * Update a user group setting from a grid
- * @param integer $group The group to create the setting for
- * @param string $key The setting key
- * @param string $value The setting value
- * @package MODX\Revolution\Processors\Security\Group\Setting
+ * Update a user from a grid
+ * @param integer $id The ID of the user
+ * @package MODX\Revolution\Processors\Security\User
  */
 class UpdateFromGrid extends Update
 {
     /**
-     * @return bool|string|null
+     * @return bool|string
      * @throws \xPDO\xPDOException
      */
     public function initialize()
@@ -29,10 +27,12 @@ class UpdateFromGrid extends Update
         if (empty($data)) {
             return $this->modx->lexicon('invalid_data');
         }
-        $properties = $this->modx->fromJSON($data);
-        $this->setProperties($properties);
+        $data = $this->modx->fromJSON($data);
+        if (empty($data)) {
+            return $this->modx->lexicon('invalid_data');
+        }
+        $this->setProperties($data);
         $this->unsetProperty('data');
-        $this->setDefaultProperties(['fk' => $this->getProperty('group')]);
 
         return parent::initialize();
     }

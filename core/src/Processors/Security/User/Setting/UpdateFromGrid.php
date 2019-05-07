@@ -8,14 +8,14 @@
  * files found in the top-level directory of this distribution.
  */
 
-namespace MODX\Revolution\Processors\Security\Group\Setting;
+namespace MODX\Revolution\Processors\Security\User\Setting;
 
 /**
- * Update a user group setting from a grid
- * @param integer $group The group to create the setting for
+ * Updates a setting from a grid
+ * @param integer $user The user to create the setting for
  * @param string $key The setting key
  * @param string $value The setting value
- * @package MODX\Revolution\Processors\Security\Group\Setting
+ * @package MODX\Revolution\Processors\Security\User\Setting
  */
 class UpdateFromGrid extends Update
 {
@@ -32,7 +32,7 @@ class UpdateFromGrid extends Update
         $properties = $this->modx->fromJSON($data);
         $this->setProperties($properties);
         $this->unsetProperty('data');
-        $this->setDefaultProperties(['fk' => $this->getProperty('group')]);
+        $this->setDefaultProperties(['fk' => $this->getProperty('user')]);
 
         return parent::initialize();
     }

@@ -8,32 +8,32 @@
  * files found in the top-level directory of this distribution.
  */
 
-namespace MODX\Revolution\Processors\Security\Group\Setting;
+namespace MODX\Revolution\Processors\Security\User\Setting;
 
 use MODX\Revolution\modAccessibleObject;
-use MODX\Revolution\modUserGroupSetting;
+use MODX\Revolution\modUserSetting;
 
 /**
- * Update a user group setting
- * @param integer $fk The group ID to create the setting for
+ * Updates a user setting
+ * @param integer $fk The user ID to create the setting for
  * @param string $key The setting key
  * @param string $value The setting value
- * @package MODX\Revolution\Processors\Security\Group\Setting
+ * @package MODX\Revolution\Processors\Security\User\Setting
  */
 class Update extends \MODX\Revolution\Processors\System\Settings\Update
 {
-    public $classKey = modUserGroupSetting::class;
+    public $classKey = modUserSetting::class;
     public $languageTopics = ['setting', 'user'];
-    public $permission = ['usergroup_save' => true, 'settings' => true];
+    public $permission = ['save_user' => true, 'settings' => true];
 
     /**
      * @return bool|string|null
      */
     public function initialize()
     {
-        $group = (int)$this->getProperty('fk', 0);
-        if (!$group) {
-            return $this->modx->lexicon('user_group_err_ns');
+        $user = (int)$this->getProperty('fk', 0);
+        if (!$user) {
+            return $this->modx->lexicon('user_err_ns');
         }
 
         $key = $this->getProperty('key', '');
@@ -41,7 +41,7 @@ class Update extends \MODX\Revolution\Processors\System\Settings\Update
             return $this->modx->lexicon($this->objectType . '_err_ns');
         }
 
-        $this->object = $this->modx->getObject($this->classKey, ['key' => $key, 'group' => $group]);
+        $this->object = $this->modx->getObject($this->classKey, ['key' => $key, 'user' => $user]);
 
         if (!$this->object) {
             return $this->modx->lexicon($this->objectType . '_err_nf');
@@ -53,4 +53,6 @@ class Update extends \MODX\Revolution\Processors\System\Settings\Update
 
         return true;
     }
+
 }
+
