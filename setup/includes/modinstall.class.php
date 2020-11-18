@@ -170,7 +170,7 @@ class modInstall {
             }
 
             if ($mode === modInstall::MODE_UPGRADE_REVO_ADVANCED) {
-                if ($this->xpdo->connect()) {
+                if ($this->xpdo->connect(array(PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT))) {
                     $errors = array ();
                     $this->xpdo = $this->_modx($errors);
                 } else {
@@ -477,7 +477,7 @@ class modInstall {
         if (include_once (MODX_CORE_PATH . 'model/modx/modx.class.php')) {
             $modx = new modX(MODX_CORE_PATH . 'config/', array(
                 xPDO::OPT_SETUP => true,
-            ));
+            ), array(PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT));
             if (!is_object($modx) || !($modx instanceof modX)) {
                 $errors[] = '<p>'.$this->lexicon('modx_err_instantiate').'</p>';
             } else {

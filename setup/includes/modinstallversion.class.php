@@ -22,6 +22,10 @@
 class modInstallVersion {
     public $results = array();
     public $version = '';
+    /** @var modInstall */
+    public $install;
+    /** @var modInstallRunner */
+    public $runner;
 
     function __construct(modInstallRunner &$runner) {
         $this->install =& $runner->install;
