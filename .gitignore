@@ -18,20 +18,12 @@ modext.js
 /docs/
 /assets/
 
-# ignore various IDE project files and folders
-.idea/
-.buildpath
-.project
-.coverage/
-.settings/
+# ignore unhidden IDE files
 nbproject/
 
 # ignore php and txt files beginning with test in root directory
 /test*.php
 /test*.txt
-
-# ignore mac files
-.DS_Store
 
 # ignore setup config files
 setup/config.xml
@@ -42,7 +34,6 @@ setup/config.upgrade-advanced.xml
 # ignore grunt files
 bower_components
 node_modules
-.sass-cache
 _build/templates/default/sass/bourbon
 _build/templates/default/sass/neat
 _build/templates/default/sass/font-awesome
@@ -57,8 +48,13 @@ composer.lock
 # ignore composer vendor dir
 /vendor
 
-# ignore phpunit cache files
-.phpunit.result.cache
+# ignore hidden root directories and files unless explicitly included
+/.*
+!/.gitignore
+!/.editorconfig
+!/.eslintrc.js
+!/.github/
 
-# ignore .ddev dir
-/.ddev/
+# exclude AI instruction files in the root
+/CLAUDE.md
+/AGENTS.md
